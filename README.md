@@ -2,7 +2,7 @@
 Java Application for ATM machine
 
 # What do you need
-- JDK 8
+- JDK 11
 - Maven 3+ 
 
 # Technologies 

@@ -14,7 +14,7 @@
 	<name>neueda-atm</name>
 	<description>API for delivery money of ATM</description>
 	<properties>
-		<java.version>1.8</java.version>
+		<java.version>11</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
