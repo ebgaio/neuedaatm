@@ -1,0 +1,11 @@
+CREATE TABLE USERACCOUNT (
+	id_user BIGINT PRIMARY KEY AUTO_INCREMENT,
+	account_number BIGINT NOT NULL,
+	pin BIGINT NOT NULL,
+	balance BIGINT NOT NULL,
+	overdraft BIGINT NOT NULL,
+	active BOOLEAN NOT NULL
+)ENGINE=InnoDB DEFAULT CHARSET=UTF8MB4;
+
+INSERT INTO USERACCOUNT (account_number, pin, balance, overdraft, active) VALUES (123456789, 1234, 800, 200, true);
+INSERT INTO USERACCOUNT (account_number, pin, balance, overdraft, active) VALUES (987654321, 4321, 1230, 500, true);
