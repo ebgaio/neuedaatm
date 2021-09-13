@@ -1,0 +1,501 @@
+{
+	"info": {
+		"_postman_id": "b8b0fbe4-314b-4baa-bcd2-7055cf91a26b",
+		"name": "Neueda",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "UserAccount",
+			"item": [
+				{
+					"name": "Take Money",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/xml",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/useraccount/takemoney/123456789/1234/600",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"useraccount",
+								"takemoney",
+								"123456789",
+								"1234",
+								"600"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List User Account",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/xml",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/useraccount",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"useraccount"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Account",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/xml",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"accountNumber\": 214365879,\n    \"pin\": \"2143\",\n    \"balance\": 990,\n    \"active\": true,\n    \"overdraft\": 450\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/useraccount/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"useraccount",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update properties Account",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/xml",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"accountNumber\": 763425174,\n    \"pin\": \"6684\",\n    \"balance\": 350,\n    \"active\": true,\n    \"overdraft\": 150\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/useraccount/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"useraccount",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List User Acccount per Number",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/xml",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/useraccount/987654321",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"useraccount",
+								"987654321"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List balance User Acccount per Code and PIN",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/xml",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/useraccount/balancecode/1/1234",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"useraccount",
+								"balancecode",
+								"1",
+								"1234"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List balance User Acccount per Number and PIN",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/xml",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/useraccount/balanceuser/123456789/1234",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"useraccount",
+								"balanceuser",
+								"123456789",
+								"1234"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update property active Account",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/xml",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "false",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/useraccount/1/active",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"useraccount",
+								"1",
+								"active"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Account",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/xml",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/useraccount/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"useraccount",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ATM",
+			"item": [
+				{
+					"name": "Add New Note in ATM",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/xml",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"value\": 500,\n    \"amount\": 20,\n    \"active\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/atm",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"atm"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update property active Note",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/xml",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "false",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/atm/2/active",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"atm",
+								"2",
+								"active"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update amount Notes",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/xml",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"amount\": 40\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/atm/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"atm",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List ATM",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/xml",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/atm",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"atm"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List ATM per Value",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/xml",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "localhost:8080/atm/10",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"atm",
+								"10"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
