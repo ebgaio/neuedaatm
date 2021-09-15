@@ -1,15 +1,11 @@
 package com.neueda.atm.resource;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,15 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.neueda.atm.exceptionHandler.NeuedaExceptionHandler.Erro;
 import com.neueda.atm.model.AvailableAndBalanceAmount;
 import com.neueda.atm.model.UserAccount;
 import com.neueda.atm.repository.UserAccountRepository;
 import com.neueda.atm.service.UserAccountService;
-import com.neueda.atm.service.exception.AccountNumberInUseException;
-import com.neueda.atm.service.exception.AccountPINIsWrongException;
-import com.neueda.atm.service.exception.InsufficientFundsInAccountException;
-import com.neueda.atm.service.exception.InsufficientMoneyInATMException;
 
 @RestController
 @RequestMapping("/useraccount")
@@ -38,9 +29,6 @@ public class UserAccountResource {
 
 	@Autowired
 	private UserAccountService userAccountService;
-	
-	@Autowired
-	private MessageSource messageSource;
 	
 	// List Users Account | localhost:8080/useraccount/users
 	@GetMapping
@@ -119,39 +107,4 @@ public class UserAccountResource {
 		userAccountRepository.deleteById(code);
 	}
 	
-    // Send message when PIN is wrong to access data of account.
-    @ExceptionHandler({ AccountPINIsWrongException.class })
-    public ResponseEntity<Object> handlerAccountPINIsWrongException(AccountPINIsWrongException ex) {
-		String mesageUser = messageSource.getMessage("error.pin-wrong", null, LocaleContextHolder.getLocale());
-		String mesageDeveloper = ex.toString();
-		List<Erro> erros = Arrays.asList(new Erro(mesageUser, mesageDeveloper));
-		return ResponseEntity.badRequest().body(erros);
-    }
-    
-    // Send message when funds is insufficient in account.
-    @ExceptionHandler({ InsufficientFundsInAccountException.class })
-    public ResponseEntity<Object> handlerInsufficientFundsInAccountException(InsufficientFundsInAccountException ex) {
-		String mesageUser = messageSource.getMessage("account.insufficient-funds", null, LocaleContextHolder.getLocale());
-		String mesageDeveloper = ex.toString();
-		List<Erro> erros = Arrays.asList(new Erro(mesageUser, mesageDeveloper));
-		return ResponseEntity.badRequest().body(erros);
-    }
-    
-    // Send message when funds is insufficient in ATM.
-    @ExceptionHandler({ InsufficientMoneyInATMException.class })
-    public ResponseEntity<Object> handlerInsufficientMoneyInATMException(InsufficientMoneyInATMException ex) {
-		String mesageUser = messageSource.getMessage("atm.insufficient-funds", null, LocaleContextHolder.getLocale());
-		String mesageDeveloper = ex.toString();
-		List<Erro> erros = Arrays.asList(new Erro(mesageUser, mesageDeveloper));
-		return ResponseEntity.badRequest().body(erros);
-    }
-    
-    // Send message when AccountNumber was register before.
-    @ExceptionHandler({ AccountNumberInUseException.class })
-    public ResponseEntity<Object> handlerAccountNumberInUseException(AccountNumberInUseException ex) {
-		String mesageUser = messageSource.getMessage("accountnumber.in-use", null, LocaleContextHolder.getLocale());
-		String mesageDeveloper = ex.toString();
-		List<Erro> erros = Arrays.asList(new Erro(mesageUser, mesageDeveloper));
-		return ResponseEntity.badRequest().body(erros);
-    }
 }

@@ -23,12 +23,9 @@ public class NeuedaExceptionHandler extends ResponseEntityExceptionHandler {
 	
 	@ExceptionHandler({ EmptyResultDataAccessException.class })
 	public ResponseEntity<Object> handleEmptyResultDataAccessException(EmptyResultDataAccessException ex, WebRequest request) {
-
 		String userMessage = messageSource.getMessage("resource.not-found", null, LocaleContextHolder.getLocale());
 		String developerMessage = ex.toString();
-
 		List<Erro> errors = Arrays.asList(new Erro(userMessage, developerMessage));
-
 		return handleExceptionInternal(ex, errors, new HttpHeaders(), HttpStatus.NOT_FOUND, request);
 	}
 	
@@ -50,5 +47,5 @@ public class NeuedaExceptionHandler extends ResponseEntityExceptionHandler {
 			return developerMessage;
 		}
 	}
-	
+
 }

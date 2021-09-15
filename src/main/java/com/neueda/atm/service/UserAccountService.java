@@ -16,10 +16,10 @@ import com.neueda.atm.model.AvailableAndBalanceAmount;
 import com.neueda.atm.model.UserAccount;
 import com.neueda.atm.repository.ATMRepository;
 import com.neueda.atm.repository.UserAccountRepository;
-import com.neueda.atm.service.exception.AccountNumberInUseException;
-import com.neueda.atm.service.exception.AccountPINIsWrongException;
-import com.neueda.atm.service.exception.InsufficientFundsInAccountException;
-import com.neueda.atm.service.exception.InsufficientMoneyInATMException;
+import com.neueda.atm.service.exception.userAccount.AccountNumberInUseException;
+import com.neueda.atm.service.exception.userAccount.AccountPINIsWrongException;
+import com.neueda.atm.service.exception.userAccount.InsufficientFundsInAccountException;
+import com.neueda.atm.service.exception.userAccount.InsufficientMoneyInATMException;
 
 @Service
 public class UserAccountService {
@@ -245,5 +245,5 @@ public class UserAccountService {
 		
 		return userAccountSave;
 	}
-}
 
+}

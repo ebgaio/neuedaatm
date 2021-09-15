@@ -1,4 +1,4 @@
-package com.neueda.atm.service.exception;
+package com.neueda.atm.service.exception.userAccount;
 
 public class AccountPINIsWrongException extends RuntimeException {
 	

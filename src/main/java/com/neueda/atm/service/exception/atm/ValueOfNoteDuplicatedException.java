@@ -1,4 +1,4 @@
-package com.neueda.atm.service.exception;
+package com.neueda.atm.service.exception.atm;
 
 public class ValueOfNoteDuplicatedException extends RuntimeException {
 	

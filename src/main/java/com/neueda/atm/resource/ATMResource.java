@@ -1,14 +1,10 @@
 package com.neueda.atm.resource;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,10 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.neueda.atm.exceptionHandler.NeuedaExceptionHandler.Erro;
 import com.neueda.atm.model.ATM;
 import com.neueda.atm.service.ATMService;
-import com.neueda.atm.service.exception.ValueOfNoteDuplicatedException;
 
 @RestController
 @RequestMapping("/atm")
@@ -29,9 +23,6 @@ public class ATMResource {
 	
 	@Autowired
 	private ATMService atmService;
-
-	@Autowired
-	private MessageSource messageSource;
 	
 	// List values in ATM | localhost:8080/atm
 	@GetMapping
@@ -76,13 +67,5 @@ public class ATMResource {
 		
 		return ResponseEntity.ok(atmSaved);
 	}
-	
-    // Send message when AccountNumber was register before.
-    @ExceptionHandler({ ValueOfNoteDuplicatedException.class })
-    public ResponseEntity<Object> handlerValueOfNoteDuplicatedException(ValueOfNoteDuplicatedException ex) {
-		String mesageUser = messageSource.getMessage("value.note-duplicate", null, LocaleContextHolder.getLocale());
-		String mesageDeveloper = ex.toString();
-		List<Erro> erros = Arrays.asList(new Erro(mesageUser, mesageDeveloper));
-		return ResponseEntity.badRequest().body(erros);
-    }
+
 }

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.neueda.atm.model.ATM;
 import com.neueda.atm.repository.ATMRepository;
-import com.neueda.atm.service.exception.ValueOfNoteDuplicatedException;
+import com.neueda.atm.service.exception.atm.ValueOfNoteDuplicatedException;
 
 @Service
 public class ATMService {
