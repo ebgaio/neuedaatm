@@ -45,20 +45,20 @@ public class UserAccountResource {
 		
 		return ResponseEntity.status(HttpStatus.OK).body(userAccount);
 	}
-	
-	// List balance of a client per code(Id) and check if PIN is correct | localhost:8080/useraccount/balance/1/1234
-	@GetMapping("/balancecode/{code}/{pin}")
-	public String listBalanceById(@PathVariable Long code, @PathVariable String pin) {
+
+	// List balance of a client per code(Id) and check if PIN is correct | localhost:8080/useraccount/balance/1
+	@GetMapping("/balancecode/{code}")
+	public String listBalanceById(@PathVariable Long code, @RequestBody String pin) {
 		
 		String balance = userAccountService.getBalanceByIdAndPIN(code, pin);
 		
 		return balance;
 		
 	}
-
+	
 	// List balance of a client per code(Id) and check if PIN is correct | localhost:8080/useraccount/123456789/1234
-	@GetMapping("/balanceuser/{accountnumber}/{pin}")
-	public ResponseEntity<UserAccount> listBalanceByIdAndPIN(@PathVariable long accountnumber, @PathVariable String pin) {
+	@GetMapping("/balanceuser/{accountnumber}")
+	public ResponseEntity<UserAccount> listBalanceByIdAndPIN(@PathVariable long accountnumber, @RequestBody String pin) {
 		
 		UserAccount userAccount = userAccountService.getByAccountNumerAndPIN(accountnumber, pin);
 		

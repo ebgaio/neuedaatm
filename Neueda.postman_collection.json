@@ -176,7 +176,8 @@
 				{
 					"name": "List balance User Acccount per Code and PIN",
 					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {}
+						"disabledSystemHeaders": {},
+						"disableBodyPruning": true
 					},
 					"request": {
 						"auth": {
@@ -191,8 +192,17 @@
 								"disabled": true
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "1234",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
 						"url": {
-							"raw": "localhost:8080/useraccount/balancecode/1/1234",
+							"raw": "localhost:8080/useraccount/balancecode/1",
 							"host": [
 								"localhost"
 							],
@@ -200,8 +210,7 @@
 							"path": [
 								"useraccount",
 								"balancecode",
-								"1",
-								"1234"
+								"1"
 							]
 						}
 					},
@@ -210,7 +219,8 @@
 				{
 					"name": "List balance User Acccount per Number and PIN",
 					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {}
+						"disabledSystemHeaders": {},
+						"disableBodyPruning": true
 					},
 					"request": {
 						"auth": {
@@ -225,8 +235,17 @@
 								"disabled": true
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "1234",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
 						"url": {
-							"raw": "localhost:8080/useraccount/balanceuser/123456789/1234",
+							"raw": "localhost:8080/useraccount/balanceuser/123456789",
 							"host": [
 								"localhost"
 							],
@@ -234,8 +253,7 @@
 							"path": [
 								"useraccount",
 								"balanceuser",
-								"123456789",
-								"1234"
+								"123456789"
 							]
 						}
 					},
