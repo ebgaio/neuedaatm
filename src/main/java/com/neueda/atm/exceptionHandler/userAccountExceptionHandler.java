@@ -25,36 +25,48 @@ public class userAccountExceptionHandler {
     // Send message when AccountNumber was register before.
     @ExceptionHandler({ AccountNumberInUseException.class })
     public ResponseEntity<Object> handlerAccountNumberInUseException(AccountNumberInUseException ex) {
-		String mesageUser = messageSource.getMessage("accountnumber.in-use", null, LocaleContextHolder.getLocale());
-		String mesageDeveloper = ex.toString();
-		List<Erro> erros = Arrays.asList(new Erro(mesageUser, mesageDeveloper));
-		return ResponseEntity.badRequest().body(erros);
+
+    	String message = "accountnumber.in-use";
+
+    	return errorMessages(message,ex);
+
     }
-    
+	
     // Send message when PIN is wrong to access data of account.
     @ExceptionHandler({ AccountPINIsWrongException.class })
     public ResponseEntity<Object> handlerAccountPINIsWrongException(AccountPINIsWrongException ex) {
-		String mesageUser = messageSource.getMessage("error.pin-wrong", null, LocaleContextHolder.getLocale());
-		String mesageDeveloper = ex.toString();
-		List<Erro> erros = Arrays.asList(new Erro(mesageUser, mesageDeveloper));
-		return ResponseEntity.badRequest().body(erros);
+		
+    	String message = "error.pin-wrong";
+
+		return errorMessages(message,ex);
     }
     
     // Send message when funds is insufficient in account.
     @ExceptionHandler({ InsufficientFundsInAccountException.class })
     public ResponseEntity<Object> handlerInsufficientFundsInAccountException(InsufficientFundsInAccountException ex) {
-		String mesageUser = messageSource.getMessage("account.insufficient-funds", null, LocaleContextHolder.getLocale());
-		String mesageDeveloper = ex.toString();
-		List<Erro> erros = Arrays.asList(new Erro(mesageUser, mesageDeveloper));
-		return ResponseEntity.badRequest().body(erros);
+
+    	String message = "account.insufficient-funds";
+		
+    	return errorMessages(message,ex);
+    
     }
     
     // Send message when funds is insufficient in ATM.
     @ExceptionHandler({ InsufficientMoneyInATMException.class })
     public ResponseEntity<Object> handlerInsufficientMoneyInATMException(InsufficientMoneyInATMException ex) {
-		String mesageUser = messageSource.getMessage("atm.insufficient-funds", null, LocaleContextHolder.getLocale());
+		
+    	String message = "atm.insufficient-funds";
+    	
+    	return errorMessages(message,ex);
+    	
+    }
+
+    // Method that manipulate the messages using Erro class.
+	private ResponseEntity<Object> errorMessages(String message, Exception ex) {
+		String mesageUser = messageSource.getMessage(message, null, LocaleContextHolder.getLocale());
 		String mesageDeveloper = ex.toString();
 		List<Erro> erros = Arrays.asList(new Erro(mesageUser, mesageDeveloper));
 		return ResponseEntity.badRequest().body(erros);
-    }
+	}
+    
 }

@@ -22,9 +22,19 @@ public class atmExceptionHandler {
     // Send message when AccountNumber was register before.
     @ExceptionHandler({ ValueOfNoteDuplicatedException.class })
     public ResponseEntity<Object> handlerValueOfNoteDuplicatedException(ValueOfNoteDuplicatedException ex) {
-		String mesageUser = messageSource.getMessage("value.note-duplicate", null, LocaleContextHolder.getLocale());
+		
+    	String message = "value.note-duplicate";
+		
+    	return errorMessages(message,ex);
+    	
+    }
+    
+    // Method that manipulate the messages using Erro class.
+	private ResponseEntity<Object> errorMessages(String message, Exception ex) {
+		String mesageUser = messageSource.getMessage(message, null, LocaleContextHolder.getLocale());
 		String mesageDeveloper = ex.toString();
 		List<Erro> erros = Arrays.asList(new Erro(mesageUser, mesageDeveloper));
 		return ResponseEntity.badRequest().body(erros);
-    }
+	}
+	
 }
