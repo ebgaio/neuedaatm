@@ -3,6 +3,8 @@ package com.neueda.atm.resource;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -30,11 +32,13 @@ public class UserAccountResource {
 	@Autowired
 	private UserAccountService userAccountService;
 	
-	// List Users Account | localhost:8080/useraccount/users
+	// List Users Account | localhost:8080/useraccount
 	@GetMapping
-	public List<UserAccount> listAll() {
+	public Page<UserAccount> listAllUserAccount(Pageable pageable) {
 		
-		return userAccountRepository.findAll();
+		Page<UserAccount> listAllUserAccount =  userAccountRepository.listAllUseAccount(pageable);
+		
+		return listAllUserAccount;
 	}
 	
 	// List Users Account especific user number | localhost:8080/useraccount/123456789
@@ -65,9 +69,9 @@ public class UserAccountResource {
 		return ResponseEntity.status(HttpStatus.OK).body(userAccount);
 	}
 
-	// Take a money (Value) of the AccountNumber using PIN
-	@GetMapping("/takemoney/{accountnumber}/{pin}/{value}")
-	public List<AvailableAndBalanceAmount> getMoney(@PathVariable long accountnumber, @PathVariable String pin, @PathVariable long value) {
+	// Take a money (Value) of the AccountNumber using PIN | localhost:8080/useraccount/takemoney/123456789/600
+	@GetMapping("/takemoney/{accountnumber}/{value}")
+	public List<AvailableAndBalanceAmount> takeMoney(@PathVariable long accountnumber, @RequestBody String pin, @PathVariable long value) {
 	
 		List<AvailableAndBalanceAmount> availableAndBalanceAmounts = userAccountService.getMoney(accountnumber, pin, value);
 				
