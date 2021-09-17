@@ -25,8 +25,8 @@ public class NeuedaExceptionHandler extends ResponseEntityExceptionHandler {
 	public ResponseEntity<Object> handleEmptyResultDataAccessException(EmptyResultDataAccessException ex, WebRequest request) {
 
 		String message = "resource.not-found";
-    	
-    	return errorMessages(message, ex, request);
+		
+		return errorMessages(message, ex, request);
 
 	}
 	
