@@ -25,7 +25,7 @@ import com.neueda.atm.service.exception.userAccount.InsufficientMoneyInATMExcept
 public class UserAccountService {
 	
 	@Autowired
-	private ATMService atmService;
+	ATMService atmService;
 	
 	@Autowired
 	private ATMRepository atmRepository;
