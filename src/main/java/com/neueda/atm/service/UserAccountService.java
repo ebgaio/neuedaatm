@@ -37,22 +37,14 @@ public class UserAccountService {
 		
 		boolean checked = checkUserAccountByAccountNumber(userAccount.getAccountNumber());
 		
-		UserAccount userAccountSaved = new UserAccount();
-
 		if (!checked) {
-			
-			userAccountSaved.setAccountNumber(userAccount.getAccountNumber());
-			userAccountSaved.setPin(userAccount.getPin());
-			userAccountSaved.setBalance(userAccount.getBalance());
-			userAccountSaved.setOverdraft(userAccount.getOverdraft());
-			userAccountSaved.setActive(userAccount.isActive());
-			
-			userAccountRepository.save(userAccountSaved);
+			userAccountRepository.save(userAccount);
 		} else {
 			throw new AccountNumberInUseException();
 		}
 		
-		return userAccountSaved;
+		return userAccount;
+
 	}
 
 	public void updatePropertyActive(Long code, boolean active) {
@@ -61,6 +53,7 @@ public class UserAccountService {
 		userAccount.setActive(active);
 		
 		userAccountRepository.save(userAccount);
+		
 	}
 	
 	public void updatePropertiesOfUserAccount(Long code, UserAccount userAccount) {
@@ -69,6 +62,7 @@ public class UserAccountService {
 		BeanUtils.copyProperties(userAccount, userAccountSaved, "id");
 		
 		userAccountRepository.save(userAccountSaved);
+		
 	}
 	
 	public String getBalanceByIdAndPIN(long code, String pin) {
@@ -94,6 +88,7 @@ public class UserAccountService {
 		UserAccount userAccountSaved = this.userAccountRepository.findByAccountNumber(accountNumber).orElseThrow(() -> new EmptyResultDataAccessException(1));
 		
 		return userAccountSaved;
+		
 	}
 
 	public List<AvailableAndBalanceAmount> getMoney(long accountNumber, String pin, long value) {
@@ -147,6 +142,7 @@ public class UserAccountService {
 		}
 
 		return availables;
+		
 	}
 	
 	private boolean checkUserAccountByAccountNumber(long accountNumber) {
@@ -194,6 +190,7 @@ public class UserAccountService {
 		atmRepository.saveAll(atmTotalOrderedDesc);
 		
 		return availables;
+		
 	}
 	
 	private List<ATM> getTotalOrdered(List<ATM> atmTotal) {
@@ -204,6 +201,7 @@ public class UserAccountService {
 				.collect(Collectors.toList());
 		
 		return sortedList;
+		
 	}
 
 	private long getTotalValue(List<ATM> atmTotal) {
@@ -217,6 +215,7 @@ public class UserAccountService {
 		}
 		
 		return result;
+		
 	}
 	
 	private UserAccount checkPIN(UserAccount userAccountSaved, String pin) {
@@ -228,6 +227,7 @@ public class UserAccountService {
 		} else {
 			throw new AccountPINIsWrongException();
 		}
+		
 	}
 	
 	private boolean checkPINIsCorrect(UserAccount userAccount, String pin) {
@@ -237,6 +237,7 @@ public class UserAccountService {
 		}
 		
 		return false;
+		
 	}
 	
 	private UserAccount getUserAccountByCode(Long code) {
@@ -244,6 +245,7 @@ public class UserAccountService {
 		UserAccount userAccountSave = this.userAccountRepository.findById(code).orElseThrow(() -> new EmptyResultDataAccessException(1));
 		
 		return userAccountSave;
+		
 	}
 
 }
