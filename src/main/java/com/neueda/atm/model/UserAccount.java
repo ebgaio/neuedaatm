@@ -27,7 +27,7 @@ public class UserAccount {
 	@Column(name = "id_user")
 	private Long id;
 
-	private long accountNumber;
+	private Long accountNumber;
 	private String pin;
 	private BigDecimal balance;
 	private BigDecimal Overdraft;

@@ -25,7 +25,7 @@ import com.neueda.atm.service.exception.userAccount.InsufficientMoneyInATMExcept
 public class UserAccountService {
 	
 	@Autowired
-	ATMService atmService;
+	private ATMService atmService;
 	
 	@Autowired
 	private ATMRepository atmRepository;
@@ -65,7 +65,7 @@ public class UserAccountService {
 		
 	}
 	
-	public String getBalanceByIdAndPIN(long code, String pin) {
+	public String getBalanceByIdAndPIN(Long code, String pin) {
 		
 		UserAccount userAccountSaved = getUserAccountByCode(code);
 		
@@ -75,7 +75,7 @@ public class UserAccountService {
 
 	}
 	
-	public UserAccount getByAccountNumerAndPIN(long accountNumber, String pin) {
+	public UserAccount getByAccountNumerAndPIN(Long accountNumber, String pin) {
 		
 		UserAccount userAccountSaved = getUserAccountByAccountNumber(accountNumber);
 
@@ -83,7 +83,7 @@ public class UserAccountService {
 		
 	}
 
-	public UserAccount getUserAccountByAccountNumber(long accountNumber) {
+	public UserAccount getUserAccountByAccountNumber(Long accountNumber) {
 		
 		UserAccount userAccountSaved = this.userAccountRepository.findByAccountNumber(accountNumber).orElseThrow(() -> new EmptyResultDataAccessException(1));
 		
@@ -91,7 +91,7 @@ public class UserAccountService {
 		
 	}
 
-	public List<AvailableAndBalanceAmount> getMoney(long accountNumber, String pin, long value) {
+	public List<AvailableAndBalanceAmount> getMoney(Long accountNumber, String pin, Long value) {
 		
 		UserAccount userAccountSaved = getUserAccountByAccountNumber(accountNumber);
 		
@@ -101,11 +101,11 @@ public class UserAccountService {
 			throw new AccountPINIsWrongException();
 		}
 		
-		long balanceUser = userAccountSaved.getBalance().longValue(); // Value of Balance actual
-		long balanceOverdraft = userAccountSaved.getOverdraft().longValue(); // Value of Overdraft actual
-		long valueTotal = balanceUser + balanceOverdraft; // Value of Balance + Overdraft
-		long valuePlus = 0; // Value used of the Overdraft
-		long balanceFinal = 0; // Register value in Balance after withdrawal used
+		Long balanceUser = userAccountSaved.getBalance().longValue(); // Value of Balance actual
+		Long balanceOverdraft = userAccountSaved.getOverdraft().longValue(); // Value of Overdraft actual
+		Long valueTotal = balanceUser + balanceOverdraft; // Value of Balance + Overdraft
+		Long valuePlus = 0L; // Value used of the Overdraft
+		Long balanceFinal = 0L; // Register value in Balance after withdrawal used
 		boolean useOverdraft = false; // Used if UserAccount have value in Overdraft
 		
 		if (value > valueTotal) {
@@ -114,7 +114,7 @@ public class UserAccountService {
 			if (value > balanceUser) {
 				if (balanceOverdraft > 0) {
 					valuePlus = value - balanceUser;
-					balanceFinal = 0;
+					balanceFinal = 0L;
 					useOverdraft = true;
 				}
 			} else {
@@ -124,7 +124,7 @@ public class UserAccountService {
 
 		List<ATM> atmTotal = atmService.findAll();
 		
-		long balanceNotes = this.getTotalValue(atmTotal);
+		Long balanceNotes = this.getTotalValue(atmTotal);
 			
 		if (value > balanceNotes) {
 			throw new InsufficientMoneyInATMException();
@@ -145,16 +145,16 @@ public class UserAccountService {
 		
 	}
 	
-	private boolean checkUserAccountByAccountNumber(long accountNumber) {
+	private boolean checkUserAccountByAccountNumber(Long accountNumber) {
 		
 		return this.userAccountRepository.findByAccountNumber(accountNumber).isPresent();
 		
 	}
 
-	private List<AvailableAndBalanceAmount> showNotesDispense(long value, List<ATM> atmTotal) {
+	private List<AvailableAndBalanceAmount> showNotesDispense(Long value, List<ATM> atmTotal) {
 		
-		long noteValue = 0;
-		long amountValue = 0;
+		Long noteValue = 0L;
+		Long amountValue = 0L;
 		int count = 0;
 
 		List<ATM> atmTotalOrderedDesc = getTotalOrdered(atmTotal);
@@ -178,7 +178,7 @@ public class UserAccountService {
 					}
 					while(value >= noteValue && count < amountValue);
 					
-					amount.setAmount(count);
+					amount.setAmount(Long.valueOf(count));
 					amount.setValue(noteValue);
 					availables.add(amount);
 					amount = new AvailableAndBalanceAmount();
@@ -204,9 +204,9 @@ public class UserAccountService {
 		
 	}
 
-	private long getTotalValue(List<ATM> atmTotal) {
+	private Long getTotalValue(List<ATM> atmTotal) {
 		
-		long result = 0;
+		Long result = 0L;
 
 		for (ATM atm : atmTotal) {
 			if (atm.isActive()) {

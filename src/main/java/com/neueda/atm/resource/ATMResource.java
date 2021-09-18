@@ -35,9 +35,18 @@ public class ATMResource {
 	
 	// List values in ATM especific value | localhost:8080/atm/value
 	@GetMapping("/{value}")
-	public ResponseEntity<ATM> getByValue(@PathVariable long value) {
+	public ResponseEntity<ATM> getByValue(@PathVariable Long value) {
 		
 		ATM atm = atmService.getByValue(value);
+		
+		return ResponseEntity.status(HttpStatus.OK).body(atm);
+	}
+	
+	// List values in ATM especific value | localhost:8080/atm/code
+	@GetMapping("/code/{code}")
+	public ResponseEntity<ATM> getById(@PathVariable Long code) {
+		
+		ATM atm = atmService.getById(code);
 		
 		return ResponseEntity.status(HttpStatus.OK).body(atm);
 	}

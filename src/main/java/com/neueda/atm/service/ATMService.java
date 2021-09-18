@@ -25,9 +25,20 @@ public class ATMService {
 		return atm;
 	}
 
-	public ATM getByValue(long value) {
+	public ATM getByValue(Long value) {
 		
 		Optional<ATM> atmSave = this.atmRepository.findByValue(value);
+
+		if (atmSave.isPresent()) {
+			return atmSave.get();
+		} else {
+			throw new EmptyResultDataAccessException(1);
+		}
+	}
+
+	public ATM getById(Long code) {
+		
+		Optional<ATM> atmSave = this.atmRepository.findById(code);
 
 		if (atmSave.isPresent()) {
 			return atmSave.get();
@@ -73,7 +84,7 @@ public class ATMService {
 		return atmSave;
 	}
 
-	private ATM checkIfRegistered(long value) {
+	private ATM checkIfRegistered(Long value) {
 		
 		Optional<ATM> atmSave = this.atmRepository.findByValue(value);
 

@@ -25,8 +25,8 @@ public class ATM {
 	@Column(name = "id_money")
 	private Long id;
 	
-	private long value;
-	private long amount;
+	private Long value;
+	private Long amount;
 	private boolean active;
 	
 }

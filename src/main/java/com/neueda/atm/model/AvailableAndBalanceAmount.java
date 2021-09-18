@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class AvailableAndBalanceAmount {
 	
-	private long value;
-	private long amount;
+	private Long value;
+	private Long amount;
 
 }

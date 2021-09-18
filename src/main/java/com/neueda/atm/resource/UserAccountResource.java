@@ -43,7 +43,7 @@ public class UserAccountResource {
 	
 	// List Users Account especific user number | localhost:8080/useraccount/123456789
 	@GetMapping("{accountnumber}")
-	public ResponseEntity<UserAccount> getUserAccountByAccountNumber(@PathVariable long accountnumber) {
+	public ResponseEntity<UserAccount> getUserAccountByAccountNumber(@PathVariable Long accountnumber) {
 		
 		UserAccount userAccount = userAccountService.getUserAccountByAccountNumber(accountnumber);
 		
@@ -62,7 +62,7 @@ public class UserAccountResource {
 	
 	// List balance of a client per code(Id) and check if PIN is correct | localhost:8080/useraccount/123456789/1234
 	@GetMapping("/balanceuser/{accountnumber}")
-	public ResponseEntity<UserAccount> listBalanceByIdAndPIN(@PathVariable long accountnumber, @RequestBody String pin) {
+	public ResponseEntity<UserAccount> listBalanceByIdAndPIN(@PathVariable Long accountnumber, @RequestBody String pin) {
 		
 		UserAccount userAccount = userAccountService.getByAccountNumerAndPIN(accountnumber, pin);
 		
@@ -71,7 +71,7 @@ public class UserAccountResource {
 
 	// Take a money (Value) of the AccountNumber using PIN | localhost:8080/useraccount/takemoney/123456789/600
 	@GetMapping("/takemoney/{accountnumber}/{value}")
-	public List<AvailableAndBalanceAmount> takeMoney(@PathVariable long accountnumber, @RequestBody String pin, @PathVariable long value) {
+	public List<AvailableAndBalanceAmount> takeMoney(@PathVariable Long accountnumber, @RequestBody String pin, @PathVariable Long value) {
 	
 		List<AvailableAndBalanceAmount> availableAndBalanceAmounts = userAccountService.getMoney(accountnumber, pin, value);
 				
