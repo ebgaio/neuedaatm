@@ -42,7 +42,7 @@ public class ATMResource {
 		return ResponseEntity.status(HttpStatus.OK).body(atm);
 	}
 	
-	// List values in ATM especific value | localhost:8080/atm/code
+	// List values in ATM especific code | localhost:8080/atm/code
 	@GetMapping("/code/{code}")
 	public ResponseEntity<ATM> getById(@PathVariable Long code) {
 		
